@@ -5,6 +5,7 @@ import 'package:todo_demo_app/models/user.dart';
 import 'package:http/http.dart' as http;
 class ApiService {
   static const String baseUrl = 'http://localhost:1337/api';
+  // static const String baseUrl = 'http://admin.alimey.com';
   static String? jwt;
 
 
@@ -16,6 +17,7 @@ class ApiService {
       body: jsonEncode({'identifier': email, 'password':password})
     );
 
+    // print(response.body.toString());
     if(response.statusCode == 200) {
       final user = User.fromJson(jsonDecode(response.body));
       jwt = user.jwt;

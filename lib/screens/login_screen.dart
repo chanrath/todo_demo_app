@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_demo_app/providers/auth_provider.dart';
+import 'package:todo_demo_app/screens/task_list_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final _emailController = TextEditingController();
@@ -27,6 +28,9 @@ class LoginScreen extends StatelessWidget {
           ElevatedButton(onPressed: () async {
            try {
              await Provider.of<AuthProvider>(context, listen: false).login(_emailController.text, _passwordController.text);
+             Navigator.pushReplacement(context, MaterialPageRoute(
+               builder: (_) => const TaskListScreen()
+             ));
            }catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login failed')));
            }
